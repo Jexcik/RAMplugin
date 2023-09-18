@@ -26,6 +26,10 @@ namespace RAM.FileName
                .OfCategory(BuiltInCategory.OST_TitleBlocks)
                .WhereElementIsNotElementType()
                .Cast<FamilyInstance>()
+               .FirstOrDefault(x => x.LookupParameter("ADSK_Штамп_1 фамилия") != null)
+               ?? new FilteredElementCollector(doc)
+               .OfCategory(BuiltInCategory.OST_TitleBlocks)
+               .WhereElementIsNotElementType().Cast<FamilyInstance>()
                .FirstOrDefault(x => x.LookupParameter("ADSK_Штамп_1 фамилия") != null);
 
             //Собираем список листов в проекте

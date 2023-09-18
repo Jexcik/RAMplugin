@@ -82,8 +82,6 @@ namespace RAM.FileName
             checkbox_IncludeSignature4.IsChecked = Convert.ToBoolean(familyInstance.LookupParameter("Подпись 4_Видимость").AsInteger());
             checkbox_IncludeSignature5.IsChecked = Convert.ToBoolean(familyInstance.LookupParameter("Подпись 5_Видимость").AsInteger());
             checkbox_IncludeSignature6.IsChecked = Convert.ToBoolean(familyInstance.LookupParameter("Подпись 6_Видимость").AsInteger());
-
-
         }
 
         private void btn_Ok_Click(object sender, RoutedEventArgs e)
@@ -188,9 +186,9 @@ namespace RAM.FileName
             }
             else
             {
-                Surname1 = textBox_Surname1.Text; //Зписываем значение в поле Фамилия 1
+                Surname1 = textBox_Surname1.Text;
             }
-            bool parsed2 = int.TryParse(textBox_Surname2.Text, out int Sur3) || double.TryParse(textBox_Surname1.Text, out double Sur4);
+            bool parsed2 = int.TryParse(textBox_Surname2.Text, out int Sur3) || double.TryParse(textBox_Surname2.Text, out double Sur4);
 
             if (parsed2)
             {
@@ -199,9 +197,9 @@ namespace RAM.FileName
             }
             else
             {
-                Surname2 = textBox_Surname2.Text; //Зписываем значение в поле Фамилия 1
+                Surname2 = textBox_Surname2.Text;
             }
-            bool parsed3 = int.TryParse(textBox_Surname3.Text, out int Sur5) || double.TryParse(textBox_Surname1.Text, out double Sur6);
+            bool parsed3 = int.TryParse(textBox_Surname3.Text, out int Sur5) || double.TryParse(textBox_Surname3.Text, out double Sur6);
 
             if (parsed3)
             {
@@ -210,9 +208,9 @@ namespace RAM.FileName
             }
             else
             {
-                Surname3 = textBox_Surname3.Text; //Зписываем значение в поле Фамилия 1
+                Surname3 = textBox_Surname3.Text;
             }
-            bool parsed4 = int.TryParse(textBox_Surname4.Text, out int Sur7) || double.TryParse(textBox_Surname1.Text, out double Sur8);
+            bool parsed4 = int.TryParse(textBox_Surname4.Text, out int Sur7) || double.TryParse(textBox_Surname4.Text, out double Sur8);
 
             if (parsed4)
             {
@@ -221,9 +219,9 @@ namespace RAM.FileName
             }
             else
             {
-                Surname4 = textBox_Surname4.Text; //Зписываем значение в поле Фамилия 1
+                Surname4 = textBox_Surname4.Text;
             }
-            bool parsed5 = int.TryParse(textBox_Surname5.Text, out int Sur9) || double.TryParse(textBox_Surname1.Text, out double Sur10);
+            bool parsed5 = int.TryParse(textBox_Surname5.Text, out int Sur9) || double.TryParse(textBox_Surname5.Text, out double Sur10);
 
             if (parsed5)
             {
@@ -232,8 +230,20 @@ namespace RAM.FileName
             }
             else
             {
-                Surname5 = textBox_Surname5.Text; //Зписываем значение в поле Фамилия 1
+                Surname5 = textBox_Surname5.Text;
             }
+            bool parsed6 = int.TryParse(textBox_Surname6.Text, out int Sur11) || double.TryParse(textBox_Surname6.Text, out double Sur12);
+
+            if (parsed6)
+            {
+                MessageBox.Show($"Ты ввел {textBox_Surname6.Text}, это не правильно", "Ошибка");
+                return;
+            }
+            else
+            {
+                Surname6 = textBox_Surname6.Text;
+            }
+
         }
         private void Check()
         {
