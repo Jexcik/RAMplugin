@@ -104,23 +104,10 @@ namespace RAM.FileName
                 t.Start("Выключение подписи");
                 foreach (FamilyInstance titleBlock in TitleBlockList)
                 {
+                    var z = !(bool)checkbox_IncludeSignature1.IsChecked ? titleBlock.LookupParameter("Подпись 1_Видимость").Set(0) : titleBlock.LookupParameter("Подпись 1_Видимость").Set(1);
 
-                    if (!(bool)checkbox_IncludeSignature1.IsChecked)
-                    {
-                        titleBlock.LookupParameter("Подпись 1_Видимость").Set(0);
-                    }
-                    else
-                    {
-                        titleBlock.LookupParameter("Подпись 1_Видимость").Set(1);
-                    }
-                    if (!(bool)checkbox_IncludeSignature2.IsChecked)
-                    {
-                        titleBlock.LookupParameter("Подпись 2_Видимость").Set(0);
-                    }
-                    else
-                    {
-                        titleBlock.LookupParameter("Подпись 2_Видимость").Set(1);
-                    }
+                    z = !(bool)checkbox_IncludeSignature2.IsChecked ? titleBlock.LookupParameter("Подпись 2_Видимость").Set(0) : titleBlock.LookupParameter("Подпись 2_Видимость").Set(1);
+
                     if (!(bool)checkbox_IncludeSignature3.IsChecked)
                     {
                         titleBlock.LookupParameter("Подпись 3_Видимость").Set(0);
@@ -153,7 +140,6 @@ namespace RAM.FileName
                     {
                         titleBlock.LookupParameter("Подпись 6_Видимость").Set(1);
                     }
-
                 }
                 t.Commit();
             }
@@ -250,7 +236,7 @@ namespace RAM.FileName
             var CurrDate = DataPicker_Calendar.SelectedDate.Value.ToString("MM.yy") ?? "Error404";
             foreach (FamilyInstance titleBlock in TitleBlockList)
             {
-                if (ComboBox_Surname1.Text!="")
+                if (ComboBox_Surname1.Text != "")
                 {
                     titleBlock.LookupParameter("Строка1_Дата").Set(1);
                 }
