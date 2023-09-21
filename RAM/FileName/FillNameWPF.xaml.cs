@@ -112,35 +112,6 @@ namespace RAM.FileName
                     {
                         titleBlock.LookupParameter("Подпись 3_Видимость").Set(0);
                     }
-                    else
-                    {
-                        titleBlock.LookupParameter("Подпись 3_Видимость").Set(1);
-                    }
-                    if (!(bool)checkbox_IncludeSignature4.IsChecked)
-                    {
-                        titleBlock.LookupParameter("Подпись 4_Видимость").Set(0);
-                    }
-                    else
-                    {
-                        titleBlock.LookupParameter("Подпись 4_Видимость").Set(1);
-                    }
-                    if (!(bool)checkbox_IncludeSignature5.IsChecked)
-                    {
-                        titleBlock.LookupParameter("Подпись 5_Видимость").Set(0);
-                    }
-                    else
-                    {
-                        titleBlock.LookupParameter("Подпись 5_Видимость").Set(1);
-                    }
-                    if (!(bool)checkbox_IncludeSignature6.IsChecked)
-                    {
-                        titleBlock.LookupParameter("Подпись 6_Видимость").Set(0);
-                    }
-                    else
-                    {
-                        titleBlock.LookupParameter("Подпись 6_Видимость").Set(1);
-                    }
-                }
                 t.Commit();
             }
         }
@@ -168,7 +139,6 @@ namespace RAM.FileName
             if (parsed1)
             {
                 MessageBox.Show($"Ты ввел {textBox_Surname1.Text}, это не правильно", "Ошибка");
-                return;
             }
             else
             {
@@ -179,7 +149,6 @@ namespace RAM.FileName
             if (parsed2)
             {
                 MessageBox.Show($"Ты ввел {textBox_Surname2.Text}, это не правильно", "Ошибка");
-                return;
             }
             else
             {
