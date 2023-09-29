@@ -108,10 +108,14 @@ namespace RAM.FileName
 
                     z = !(bool)checkbox_IncludeSignature2.IsChecked ? titleBlock.LookupParameter("Подпись 2_Видимость").Set(0) : titleBlock.LookupParameter("Подпись 2_Видимость").Set(1);
 
-                    if (!(bool)checkbox_IncludeSignature3.IsChecked)
-                    {
-                        titleBlock.LookupParameter("Подпись 3_Видимость").Set(0);
-                    }
+                    z = !(bool)checkbox_IncludeSignature3.IsChecked ? titleBlock.LookupParameter("Подпись 3_Видимость").Set(0) : titleBlock.LookupParameter("Подпись 3_Видимость").Set(1);
+
+                    z = !(bool)checkbox_IncludeSignature4.IsChecked ? titleBlock.LookupParameter("Подпись 4_Видимость").Set(0) : titleBlock.LookupParameter("Подпись 4_Видимость").Set(1);
+
+                    z = !(bool)checkbox_IncludeSignature5.IsChecked ? titleBlock.LookupParameter("Подпись 5_Видимость").Set(0) : titleBlock.LookupParameter("Подпись 5_Видимость").Set(1);
+
+                    z = !(bool)checkbox_IncludeSignature6.IsChecked ? titleBlock.LookupParameter("Подпись 6_Видимость").Set(0) : titleBlock.LookupParameter("Подпись 6_Видимость").Set(1);
+                }
                 t.Commit();
             }
         }
@@ -159,7 +163,6 @@ namespace RAM.FileName
             if (parsed3)
             {
                 MessageBox.Show($"Ты ввел {textBox_Surname3.Text}, это не правильно", "Ошибка");
-                return;
             }
             else
             {
@@ -170,7 +173,6 @@ namespace RAM.FileName
             if (parsed4)
             {
                 MessageBox.Show($"Ты ввел {textBox_Surname4.Text}, это не правильно", "Ошибка");
-                return;
             }
             else
             {
@@ -181,7 +183,6 @@ namespace RAM.FileName
             if (parsed5)
             {
                 MessageBox.Show($"Ты ввел {textBox_Surname5.Text}, это не правильно", "Ошибка");
-                return;
             }
             else
             {
@@ -192,67 +193,24 @@ namespace RAM.FileName
             if (parsed6)
             {
                 MessageBox.Show($"Ты ввел {textBox_Surname6.Text}, это не правильно", "Ошибка");
-                return;
             }
             else
             {
                 Surname6 = textBox_Surname6.Text;
             }
-
         }
         private void Check()
         {
             var CurrDate = DataPicker_Calendar.SelectedDate.Value.ToString("MM.yy") ?? "Error404";
             foreach (FamilyInstance titleBlock in TitleBlockList)
             {
-                if (ComboBox_Surname1.Text != "")
-                {
-                    titleBlock.LookupParameter("Строка1_Дата").Set(1);
-                }
-                else
-                {
-                    titleBlock.LookupParameter("Строка1_Дата").Set(0);
-                }
-                if (ComboBox_Surname2.Text != "")
-                {
-                    titleBlock.LookupParameter("Строка2_Дата").Set(1);
-                }
-                else
-                {
-                    titleBlock.LookupParameter("Строка2_Дата").Set(0);
-                }
-                if (ComboBox_Surname3.Text != "")
-                {
-                    titleBlock.LookupParameter("Строка3_Дата").Set(1);
-                }
-                else
-                {
-                    titleBlock.LookupParameter("Строка3_Дата").Set(0);
-                }
-                if (ComboBox_Surname4.Text != "")
-                {
-                    titleBlock.LookupParameter("Строка4_Дата").Set(1);
-                }
-                else
-                {
-                    titleBlock.LookupParameter("Строка4_Дата").Set(0);
-                }
-                if (ComboBox_Surname5.Text != "")
-                {
-                    titleBlock.LookupParameter("Строка5_Дата").Set(1);
-                }
-                else
-                {
-                    titleBlock.LookupParameter("Строка5_Дата").Set(0);
-                }
-                if (ComboBox_Surname6.Text != "")
-                {
-                    titleBlock.LookupParameter("Строка6_Дата").Set(1);
-                }
-                else
-                {
-                    titleBlock.LookupParameter("Строка6_Дата").Set(0);
-                }
+                var str = ComboBox_Surname1.Text != "" ? titleBlock.LookupParameter("Строка1_Дата").Set(1) : titleBlock.LookupParameter("Строка1_Дата").Set(0);
+                str = ComboBox_Surname2.Text != "" ? titleBlock.LookupParameter("Строка2_Дата").Set(1) : titleBlock.LookupParameter("Строка2_Дата").Set(0);
+                str = ComboBox_Surname3.Text != "" ? titleBlock.LookupParameter("Строка3_Дата").Set(1) : titleBlock.LookupParameter("Строка3_Дата").Set(0);
+                str = ComboBox_Surname4.Text != "" ? titleBlock.LookupParameter("Строка4_Дата").Set(1) : titleBlock.LookupParameter("Строка4_Дата").Set(0);
+                str = ComboBox_Surname5.Text != "" ? titleBlock.LookupParameter("Строка5_Дата").Set(1) : titleBlock.LookupParameter("Строка5_Дата").Set(0);
+                str = ComboBox_Surname6.Text != "" ? titleBlock.LookupParameter("Строка6_Дата").Set(1) : titleBlock.LookupParameter("Строка6_Дата").Set(0);
+
                 titleBlock.get_Parameter(BuiltInParameter.SHEET_ISSUE_DATE).Set(CurrDate);
             }
         }
@@ -264,6 +222,21 @@ namespace RAM.FileName
                 t.Start("Заполнение даты");
                 Check();
                 t.Commit();
+            }
+        }
+
+        private void FileName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter || e.Key == Key.Space)
+            {
+                
+                DialogResult = true;
+                Close();
+            }
+            else if (e.Key == Key.Escape)
+            {
+                DialogResult = false;
+                Close();
             }
         }
     }
