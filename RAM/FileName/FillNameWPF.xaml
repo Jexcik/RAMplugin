@@ -8,7 +8,7 @@
              Title="Заполнить штамп" HorizontalAlignment="Center" Height="560
         " Width="350"
         MinHeight="560" MinWidth="350" MaxHeight="560" MaxWidth="300"
-        WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Icon="Resources/logoRAM.ico"  WindowStartupLocation="CenterScreen" KeyDown="FileName_KeyDown">
+        WindowStyle="SingleBorderWindow" ResizeMode="NoResize" ShowInTaskbar="True" WindowStartupLocation="CenterScreen" KeyDown="FileName_KeyDown" Icon="/RAM;component/Resources/logoRAM.ico">
     <Grid>
         <ComboBox x:Name="ComboBox_Surname1" Margin="31,14,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" IsEditable="True" />
         <TextBox x:Name="textBox_Surname1"  HorizontalAlignment="Left" Height="25" Margin="30,41,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
@@ -44,7 +44,6 @@
         <Button x:Name="btn_Ok" Content="Ок" Margin="15,0,0,20" HorizontalContentAlignment="Center" Click="btn_Ok_Click" HorizontalAlignment="Left" Width="90" Height="35" VerticalAlignment="Bottom" />
         <Button x:Name="btn_Cancel" Content="Отмена" Margin="0,0,15,20" HorizontalContentAlignment="Center" Click="btn_Cancel_Click" HorizontalAlignment="Right" Width="90" Height="35" VerticalAlignment="Bottom" />
         <DatePicker x:Name="DataPicker_Calendar" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0,0,10,70"/>
-
 
     </Grid>
 

@@ -128,5 +128,9 @@
   <ItemGroup>
     <Resource Include="Resources\logoRAM.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="FileName\img2.png" />
+    <Content Include="FileName\logoRAM.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
