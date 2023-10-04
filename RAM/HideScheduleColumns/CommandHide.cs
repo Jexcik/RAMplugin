@@ -33,6 +33,10 @@ namespace RAM.HideScheduleColumns
 
                 foreach (var viewSchedule in ViewScheduleList)
                 {
+                   ScheduleSortGroupField SortField= viewSchedule.Definition.GetSortGroupField(0);//Получаем значение первого поля в сортировке спецификации
+
+                    viewSchedule.Definition.ClearSortGroupFields();//Очищаем поля сортировки и группировки в спецификации
+
                     var CountColumn = viewSchedule.GetTableData().GetSectionData(SectionType.Body).NumberOfColumns;//Получаем колличество видимых столбцов
                     var CountRow = viewSchedule.GetTableData().GetSectionData(SectionType.Body).NumberOfRows;//Получаем колличество видимых строк
                     var count = viewSchedule.Definition.GetFieldCount();//Получаем общее число столбцов в спецификации
@@ -40,7 +44,13 @@ namespace RAM.HideScheduleColumns
                     for (int i = 0; i < count; i++) //Проходимся по всем столбцам в спецификации
                     {
                         string columnName = viewSchedule.Definition.GetField(i).GetName();//Получаем имя столбца
-                        if ((columnName.Contains("Ø") && !columnName.Contains("Ø_arm")) || columnName.Contains("Итого")) //Если имя столбца содержит "Ø" или Итого
+                        if ((columnName.Contains("Ø") && !columnName.Contains("Ø_arm")) 
+                            || columnName.Contains("Итого")
+                            ||columnName.Contains("⌶")
+                            ||columnName.Contains("L")
+                            ||columnName.Contains("")
+                            ||columnName.Contains("ГОСТ 103-76")
+                            ||columnName.Contains("ГОСТ 30245-2003")) //Если имя столбца содержит "Ø" или Итого
                         {
                             viewSchedule.Definition.GetField(i).IsHidden = false; //Переключаем флажок видимости на выкл
                         }
@@ -61,6 +71,8 @@ namespace RAM.HideScheduleColumns
                             viewSchedule.Definition.GetField(index).IsHidden = true; //То выключаем видимость столбца
                         }
                     }
+                    
+                    viewSchedule.Definition.InsertSortGroupField(SortField,0);//Вставляем в первое поле сортировки нужное поле
                 }
                 t.Commit();
             }
