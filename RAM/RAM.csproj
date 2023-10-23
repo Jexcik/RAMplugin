@@ -82,12 +82,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RevitLink\CommandRevitLink.cs" />
-    <Compile Include="View Design\GridSelectionFilter.cs" />
-    <Compile Include="View Design\CommandViewDesign.cs" />
-    <Compile Include="View Design\UserViewDesign.xaml.cs">
-      <DependentUpon>UserViewDesign.xaml</DependentUpon>
+    <Compile Include="ReinforcementColumnarFoundations\AlphanumComparatorFastString.cs" />
+    <Compile Include="ReinforcementColumnarFoundations\FoundationSelectionFilter.cs" />
+    <Compile Include="ReinforcementColumnarFoundations\ReinforcementColumnarFoundationsCommand.cs" />
+    <Compile Include="ReinforcementColumnarFoundations\ReinforcementColumnarFoundationsWPF.xaml.cs">
+      <DependentUpon>ReinforcementColumnarFoundationsWPF.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RevitLink\CommandRevitLink.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FileName\FormFillNames.resx">
@@ -111,16 +112,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View Design\UserViewDesign.xaml">
+    <Page Include="ReinforcementColumnarFoundations\ReinforcementColumnarFoundationsWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\img4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\img5.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\img3.png" />
@@ -131,6 +129,9 @@
   <ItemGroup>
     <Content Include="FileName\img2.png" />
     <Content Include="FileName\logoRAM.ico" />
+    <None Include="Resources\img5.jpg" />
+    <None Include="Resources\Надколонник_Армирование_Тип1.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,19 +1,18 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI.Selection;
-using Autodesk.Revit.DB.Architecture;
-using Autodesk.Revit.UI;
-using Autodesk.Revit.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.Revit.DB.Structure;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace RAM.View_Design
+namespace RAM.ReinforcementColumnarFoundations
 {
-    internal class GridSelectionFilter : ISelectionFilter
+    public class FoundationSelectionFilter : ISelectionFilter
     {
         public bool AllowElement(Element elem)
         {
-            if(elem is Grid || elem is Wall )
+            if (elem is FamilyInstance && elem.Category.Id.IntegerValue.Equals((int)BuiltInCategory.OST_StructuralFoundation))
             {
                 return true;
             }

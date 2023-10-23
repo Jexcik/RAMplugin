@@ -54,12 +54,20 @@ namespace RAM
             pbdHideSchedule.LargeImage = imgLarge4;
             panel.AddItem(pbdHideSchedule);
 
-            PushButtonData pbdRevitLink = new PushButtonData("Выгрузить ссылки", "Выгрузка\nссылок", assemblyPath, "RAM.RevitLink.CommandRevitLink");
+            //PushButtonData pbdRevitLink = new PushButtonData("Выгрузить ссылки", "Выгрузка\nссылок", assemblyPath, "RAM.RevitLink.CommandRevitLink");
+
+            //Image img5 = Properties.Resources.img5;
+            //ImageSource imgLarge5 = GetImageSourse(img5);
+            //pbdRevitLink.LargeImage = imgLarge5;
+            //panel.AddItem(pbdRevitLink);
+
+            PushButtonData pbdRCF = new PushButtonData("Армирование фундамента", "Армирование\nфундамента", assemblyPath, "RAM.ReinforcementColumnarFoundations.ReinforcementColumnarFoundationsCommand");
 
             Image img5 = Properties.Resources.img5;
             ImageSource imgLarge5 = GetImageSourse(img5);
-            pbdRevitLink.LargeImage = imgLarge5;
-            panel.AddItem(pbdRevitLink);
+            pbdRCF.LargeImage = imgLarge5;
+            panel.AddItem(pbdRCF);
+
 
             PushButtonData pbdGetElement = new PushButtonData("Получить элементы", "Получить\nэлементы", assemblyPath, "RAM.GetElement.CommandGetElement");
 

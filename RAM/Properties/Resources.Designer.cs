@@ -109,5 +109,15 @@ namespace RAM.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Надколонник_Армирование_Тип1 {
+            get {
+                object obj = ResourceManager.GetObject("Надколонник_Армирование_Тип1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
