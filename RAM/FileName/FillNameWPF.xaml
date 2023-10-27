@@ -10,6 +10,16 @@
         MinHeight="560" MinWidth="350" MaxHeight="560" MaxWidth="300"
         WindowStyle="SingleBorderWindow" ResizeMode="NoResize" ShowInTaskbar="True" WindowStartupLocation="CenterScreen" KeyDown="FileName_KeyDown" Icon="/RAM;component/Resources/logoRAM.ico">
     <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Файл">
+                    <MenuItem Header="Выход"/>
+                </MenuItem>
+                <MenuItem Header="Помощ">
+                    <MenuItem Header="О программе"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
         <ComboBox x:Name="ComboBox_Surname1" Margin="31,14,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" IsEditable="True" />
         <TextBox x:Name="textBox_Surname1"  HorizontalAlignment="Left" Height="25" Margin="30,41,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         <ComboBox x:Name="ComboBox_Surname2"  Margin="31,83,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" IsEditable="True" />

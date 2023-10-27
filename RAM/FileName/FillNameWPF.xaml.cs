@@ -201,7 +201,15 @@ namespace RAM.FileName
         }
         private void Check()
         {
-            var CurrDate = DataPicker_Calendar.SelectedDate.Value.ToString("MM.yy") ?? "Error404";
+            string CurrDate=string.Empty;
+            try
+            {
+                CurrDate = DataPicker_Calendar.SelectedDate.Value.ToString("MM.yy") ?? "Error404";
+            }
+            catch
+            {
+                MessageBox.Show("Заполните дату");
+            }
             foreach (FamilyInstance titleBlock in TitleBlockList)
             {
                 var str = ComboBox_Surname1.Text != "" ? titleBlock.LookupParameter("Строка1_Дата").Set(1) : titleBlock.LookupParameter("Строка1_Дата").Set(0);
@@ -229,7 +237,7 @@ namespace RAM.FileName
         {
             if (e.Key == Key.Enter || e.Key == Key.Space)
             {
-                
+
                 DialogResult = true;
                 Close();
             }

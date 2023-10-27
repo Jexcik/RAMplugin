@@ -84,7 +84,10 @@
     </Compile>
     <Compile Include="ReinforcementColumnarFoundations\AlphanumComparatorFastString.cs" />
     <Compile Include="ReinforcementColumnarFoundations\FoundationSelectionFilter.cs" />
+    <Compile Include="ReinforcementColumnarFoundations\RainforcementColumnarFoundationsSettings.cs" />
+    <Compile Include="ReinforcementColumnarFoundations\RainforcementColumnarFoundationsSettingsT1.cs" />
     <Compile Include="ReinforcementColumnarFoundations\ReinforcementColumnarFoundationsCommand.cs" />
+    <Compile Include="ReinforcementColumnarFoundations\ReinforcementColumnarFoundationsT1.cs" />
     <Compile Include="ReinforcementColumnarFoundations\ReinforcementColumnarFoundationsWPF.xaml.cs">
       <DependentUpon>ReinforcementColumnarFoundationsWPF.xaml</DependentUpon>
     </Compile>
@@ -129,8 +132,10 @@
   <ItemGroup>
     <Content Include="FileName\img2.png" />
     <Content Include="FileName\logoRAM.ico" />
+    <Resource Include="Resources\Надколонник_Армирование.png" />
+    <Resource Include="Resources\Arm_found.png" />
+    <Resource Include="Resources\Надколонник_Армирование_Тип1.png" />
     <None Include="Resources\img5.jpg" />
-    <None Include="Resources\Надколонник_Армирование_Тип1.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
