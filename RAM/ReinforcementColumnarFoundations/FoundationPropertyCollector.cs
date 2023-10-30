@@ -1,5 +1,4 @@
-﻿using Aspose.Cells.Charts;
-using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +17,9 @@ namespace RAM.ReinforcementColumnarFoundations
         public double TopLevelOffset { get; }
         public double FoundationLength { get; }
         public double ColumnHeight { get; }
+
+        public double ColumnWidth { get; }
+        public double ColumnLength { get; }
         public XYZ FoundationBasePoint { get; }
 
         public FoundationPropertyCollector(Document doc, FamilyInstance foundation)
@@ -32,8 +34,8 @@ namespace RAM.ReinforcementColumnarFoundations
 
             //Высота надколонника
             ColumnHeight = familySymbol.LookupParameter("Подколонник_Высота").AsDouble();
-            double columnWidth = familySymbol.LookupParameter("Подколонник_Ширина").AsDouble();
-            double columnLength = familySymbol.LookupParameter("Подколонник_Длина").AsDouble();
+            ColumnWidth = familySymbol.LookupParameter("Подколонник_Ширина").AsDouble();
+            ColumnLength = familySymbol.LookupParameter("Подколонник_Длина").AsDouble();
 
 
             //Высота первого уступа

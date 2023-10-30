@@ -11,6 +11,7 @@ namespace RAM.ReinforcementColumnarFoundations
 {
     public class ReinforcementColumnarFoundationsT1 : IExternalCommand
     {
+
         public Result Execute(UIApplication uiapp, Document doc, List<FamilyInstance> foundationList, ReinforcementColumnarFoundationsWPF reinforcementColumnarFoundationsWPF)
         {
             RebarBarType firstMainBarType = reinforcementColumnarFoundationsWPF.FirstMainBarTape;
@@ -25,6 +26,7 @@ namespace RAM.ReinforcementColumnarFoundations
             RebarShape form51 = reinforcementColumnarFoundationsWPF.Form51;
 
             RebarCoverType scRebarBarCoverType = reinforcementColumnarFoundationsWPF.SupracolumnRebarBarCoverType;
+            double coverDistance = scRebarBarCoverType.CoverDistance;
 
             using (Transaction t = new Transaction(doc))
             {
@@ -33,9 +35,10 @@ namespace RAM.ReinforcementColumnarFoundations
                 {
                     FoundationPropertyCollector foundationProperty = new FoundationPropertyCollector(doc, foundation);
                     foundation.get_Parameter(BuiltInParameter.CLEAR_COVER_OTHER).Set(scRebarBarCoverType.Id);
+                    var coverTop=foundation.get_Parameter(BuiltInParameter.CLEAR_COVER_TOP).AsValueString();
 
                     //Точки для построения кривых стержня
-                    XYZ rebar_p1 = new XYZ(Math.Round(foundationProperty.FoundationBasePoint.X - foundationProperty.ColumnWidth / 2, 6), Math.Round(foundationProperty.FoundationBasePoint.Y + foundationProperty.ColumnLength / 2, 6), Math.Round(foundationProperty.FoundationBasePoint.Z + foundationProperty.FoundationLength, 6));
+                    XYZ rebar_p1 = new XYZ(Math.Round(foundationProperty.FoundationBasePoint.X - foundationProperty.ColumnLength / 2 + firstMainBarDiam / 2 + coverDistance, 6), Math.Round(foundationProperty.FoundationBasePoint.Y + foundationProperty.ColumnWidth / 2 - firstMainBarDiam / 2 - coverDistance, 6), Math.Round(foundationProperty.FoundationBasePoint.Z + foundationProperty.FoundationLength, 6));
                     XYZ rebar_p2 = new XYZ(Math.Round(rebar_p1.X, 6), Math.Round(rebar_p1.Y, 6), Math.Round(rebar_p1.Z - foundationProperty.FoundationLength, 6));
                     XYZ rebar_p3 = new XYZ(Math.Round(rebar_p2.X - 300 / 308.4, 6), Math.Round(rebar_p2.Y, 6), Math.Round(rebar_p2.Z, 6));
 
@@ -47,6 +50,8 @@ namespace RAM.ReinforcementColumnarFoundations
                     mainRebarCurves.Add(line2);
 
                     //Создание арматурного стержня
+                    
+
                     Rebar MainRebar_1 = null;
                     try
                     {
