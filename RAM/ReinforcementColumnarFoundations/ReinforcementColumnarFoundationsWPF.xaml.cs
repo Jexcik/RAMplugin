@@ -27,6 +27,18 @@ namespace RAM.ReinforcementColumnarFoundations
         List<RebarShape> RebarShapeList;
 
         public string SelectedReinforcementTypeButtonName;
+        public RebarBarType FirstMainBarTape;
+        public RebarBarType SecondMainBarTape;
+        public RebarBarType FirstStirrupBarTape;
+        public RebarBarType SecondStirrupBarTape;
+        public RebarCoverType SupracolumnRebarBarCoverType;
+
+        public RebarShape Form01;
+        public RebarShape Form26;
+        public RebarShape Form11;
+        public RebarShape Form51;
+        public RebarHookType RebarHookTypeForStirrup;
+
 
         RainforcementColumnarFoundationsSettings RainforcementColumnarFoundationsSettingsItem;
         RainforcementColumnarFoundationsSettingsT1 RainforcementColumnarFoundationsSettingsT1Item;

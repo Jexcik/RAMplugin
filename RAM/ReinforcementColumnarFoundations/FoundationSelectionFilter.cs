@@ -12,7 +12,7 @@ namespace RAM.ReinforcementColumnarFoundations
     {
         public bool AllowElement(Element elem)
         {
-            if (elem is FamilyInstance && elem.Category.Id.IntegerValue.Equals((int)BuiltInCategory.OST_StructuralFoundation))
+            if (elem is FamilyInstance && elem.Category.Id.IntegerValue.Equals((int)BuiltInCategory.OST_StructuralFoundation)&& !elem.Name.Contains("ФБС"))
             {
                 return true;
             }

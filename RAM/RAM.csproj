@@ -83,6 +83,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ReinforcementColumnarFoundations\AlphanumComparatorFastString.cs" />
+    <Compile Include="ReinforcementColumnarFoundations\FoundationPropertyCollector.cs" />
     <Compile Include="ReinforcementColumnarFoundations\FoundationSelectionFilter.cs" />
     <Compile Include="ReinforcementColumnarFoundations\RainforcementColumnarFoundationsSettings.cs" />
     <Compile Include="ReinforcementColumnarFoundations\RainforcementColumnarFoundationsSettingsT1.cs" />

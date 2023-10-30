@@ -29,6 +29,7 @@ namespace RAM.ReinforcementColumnarFoundations
             List<RebarCoverType> rebarCoverTypesList = new FilteredElementCollector(doc)
                 .OfClass(typeof(RebarCoverType))
                 .Cast<RebarCoverType>()
+                .Where(rct => char.IsDigit(rct.Name[0]))
                 .OrderBy(rct => rct.Name)
                 .ToList();
 
@@ -45,8 +46,29 @@ namespace RAM.ReinforcementColumnarFoundations
                 .Cast<RebarHookType>()
                 .ToList();
 
+            List<FamilyInstance> foundationsList = GetFoundationsFromCurrentSelection(doc, sel);
 
-            ReinforcementColumnarFoundationsWPF rcfWPF = new ReinforcementColumnarFoundationsWPF(rebarBarTypesList,rebarShapeList,rebarCoverTypesList);
+            if (foundationsList.Count == 0)
+            {
+                FoundationSelectionFilter foundationSelFilter = new FoundationSelectionFilter();
+                IList<Reference> selReferenceList = null;
+                try
+                {
+                    selReferenceList = sel.PickObjects(ObjectType.Element, foundationSelFilter, "Выберите столбчатые фундаменты!");
+                }
+                catch
+                {
+                    return Result.Cancelled;
+                }
+                foreach (Reference foundRef in selReferenceList)
+                {
+                    foundationsList.Add(doc.GetElement(foundRef) as FamilyInstance);
+                }
+            }
+
+
+
+            ReinforcementColumnarFoundationsWPF rcfWPF = new ReinforcementColumnarFoundationsWPF(rebarBarTypesList, rebarShapeList, rebarCoverTypesList);
 
             rcfWPF.ShowDialog();
             if (rcfWPF.DialogResult != true)
@@ -57,10 +79,31 @@ namespace RAM.ReinforcementColumnarFoundations
             switch (rcfWPF.SelectedReinforcementTypeButtonName)
             {
                 case "button_Type1":
-                    ReinforcementColumnarFoundationsT1 reinforcementColumnarFoundationsT1 = new ReinforcementColumnarFoundationsT1();break;
+                    ReinforcementColumnarFoundationsT1 reinforcementColumnarFoundationsT1 = new ReinforcementColumnarFoundationsT1();
+                    reinforcementColumnarFoundationsT1.Execute(commandData.Application
+                        , doc
+                        , foundationsList
+                        , rcfWPF);
+                    break;
             }
 
             return Result.Succeeded;
+        }
+
+        private List<FamilyInstance> GetFoundationsFromCurrentSelection(Document doc, Selection sel)
+        {
+            ICollection<ElementId> selectedIds = sel.GetElementIds();
+            List<FamilyInstance> tempFoundationsList = new List<FamilyInstance>();
+            foreach (ElementId foundationId in selectedIds)
+            {
+                if (doc.GetElement(foundationId) is FamilyInstance
+                    && null != doc.GetElement(foundationId).Category
+                    && doc.GetElement(foundationId).Category.Id.IntegerValue.Equals((int)BuiltInCategory.OST_StructuralFoundation))
+                {
+                    tempFoundationsList.Add(doc.GetElement(foundationId) as FamilyInstance);
+                }
+            }
+            return tempFoundationsList;
         }
     }
 }
