@@ -68,7 +68,7 @@ namespace RAM.ReinforcementColumnarFoundations
 
 
 
-            ReinforcementColumnarFoundationsWPF rcfWPF = new ReinforcementColumnarFoundationsWPF(rebarBarTypesList, rebarShapeList, rebarCoverTypesList);
+            ReinforcementColumnarFoundationsWPF rcfWPF = new ReinforcementColumnarFoundationsWPF(rebarBarTypesList, rebarShapeList, rebarCoverTypesList, rebarHookTypeList);
 
             rcfWPF.ShowDialog();
             if (rcfWPF.DialogResult != true)
@@ -78,7 +78,7 @@ namespace RAM.ReinforcementColumnarFoundations
 
             switch (rcfWPF.SelectedReinforcementTypeButtonName)
             {
-                case "button_Type1":
+                case "buttonType1":
                     ReinforcementColumnarFoundationsT1 reinforcementColumnarFoundationsT1 = new ReinforcementColumnarFoundationsT1();
                     reinforcementColumnarFoundationsT1.Execute(commandData.Application
                         , doc

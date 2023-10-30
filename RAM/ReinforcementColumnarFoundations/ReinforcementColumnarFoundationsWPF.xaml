@@ -77,6 +77,8 @@
                         <ComboBox x:Name="comboBox_Form51" Margin="10,105,10,0" VerticalAlignment="Top" Height="25" VerticalContentAlignment="Center" Grid.Row="3"/>
                         <GridSplitter Height="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="#FFACACAC" Grid.Row="3"/>
 
+                        <Label x:Name="label_RebarHookType" Content="Отгиб арматуры для хомутов" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="4"/>
+                        <ComboBox x:Name="comboBox_RebarHookType" Margin="10,105,10,0" VerticalAlignment="Top" Grid.Row="4" Height="25" VerticalContentAlignment="Center"/>
                     </Grid>
                 </Grid>
             </TabItem>

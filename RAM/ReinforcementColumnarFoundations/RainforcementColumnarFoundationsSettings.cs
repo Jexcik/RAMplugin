@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace RAM.ReinforcementColumnarFoundations
 {
-    internal class RainforcementColumnarFoundationsSettings
+    public class RainforcementColumnarFoundationsSettings
     {
         public string SelectedTypeButtonName { get; set; }
 

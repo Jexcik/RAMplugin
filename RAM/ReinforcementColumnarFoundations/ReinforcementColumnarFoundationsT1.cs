@@ -24,19 +24,51 @@ namespace RAM.ReinforcementColumnarFoundations
             RebarShape form11 = reinforcementColumnarFoundationsWPF.Form11;
             RebarShape form51 = reinforcementColumnarFoundationsWPF.Form51;
 
-            RebarCoverType supracolumnRebarBarCoverType = reinforcementColumnarFoundationsWPF.SupracolumnRebarBarCoverType;
+            RebarCoverType scRebarBarCoverType = reinforcementColumnarFoundationsWPF.SupracolumnRebarBarCoverType;
 
             using (Transaction t = new Transaction(doc))
             {
                 t.Start("Армирование фундаментов - Тип 1");
                 foreach (FamilyInstance foundation in foundationList)
                 {
-                    foundation.get_Parameter(BuiltInParameter.CLEAR_COVER_OTHER).Set(supracolumnRebarBarCoverType.Id);
+                    FoundationPropertyCollector foundationProperty = new FoundationPropertyCollector(doc, foundation);
+                    foundation.get_Parameter(BuiltInParameter.CLEAR_COVER_OTHER).Set(scRebarBarCoverType.Id);
 
                     //Точки для построения кривых стержня
-                    XYZ rebar_p1 = new XYZ(Math.Round();
-                    XYZ rebar_p2 = null;
+                    XYZ rebar_p1 = new XYZ(Math.Round(foundationProperty.FoundationBasePoint.X - foundationProperty.ColumnWidth / 2, 6), Math.Round(foundationProperty.FoundationBasePoint.Y + foundationProperty.ColumnLength / 2, 6), Math.Round(foundationProperty.FoundationBasePoint.Z + foundationProperty.FoundationLength, 6));
+                    XYZ rebar_p2 = new XYZ(Math.Round(rebar_p1.X, 6), Math.Round(rebar_p1.Y, 6), Math.Round(rebar_p1.Z - foundationProperty.FoundationLength, 6));
+                    XYZ rebar_p3 = new XYZ(Math.Round(rebar_p2.X - 300 / 308.4, 6), Math.Round(rebar_p2.Y, 6), Math.Round(rebar_p2.Z, 6));
+
+                    //Кривые стержня
+                    List<Curve> mainRebarCurves = new List<Curve>();
+                    Curve line1 = Line.CreateBound(rebar_p1, rebar_p2) as Curve;
+                    mainRebarCurves.Add(line1);
+                    Curve line2 = Line.CreateBound(rebar_p2, rebar_p3) as Curve;
+                    mainRebarCurves.Add(line2);
+
+                    //Создание арматурного стержня
+                    Rebar MainRebar_1 = null;
+                    try
+                    {
+                        MainRebar_1 = Rebar.CreateFromCurvesAndShape(doc
+                            , form11
+                            , firstMainBarType
+                            , null
+                            , null
+                            , foundation
+                            , new XYZ(0, 1, 0)
+                            , mainRebarCurves
+                            , RebarHookOrientation.Right
+                            , RebarHookOrientation.Right);
+                    }
+                    catch
+                    {
+                        TaskDialog.Show("Revit", "Не удалость создать Г-образный стержень");
+                        return Result.Cancelled;
+                    }
+
                 }
+                t.Commit();
             }
 
             return Result.Succeeded;

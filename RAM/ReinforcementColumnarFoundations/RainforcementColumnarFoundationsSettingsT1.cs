@@ -5,6 +5,16 @@ namespace RAM.ReinforcementColumnarFoundations
 {
     public class RainforcementColumnarFoundationsSettingsT1
     {
+        public string Form01Name { get; set; }
+        public string Form26Name { get; set; }
+        public string Form11Name { get; set; }
+        public string Form51Name { get; set; }
+        public string RebarHookTypeForStirrupName { get; set; }
+
+        public string FirstMainBarTapeName { get; set; }
+        public string FirstStirrupBarTapeName { get; set; }
+        public string SupracolumnRebarBarCoverTypeName { get; set; }
+
         public RainforcementColumnarFoundationsSettingsT1 GetSettings()
         {
             RainforcementColumnarFoundationsSettingsT1 rainforcementColumnarFoundationsSettingsT1 = null;
