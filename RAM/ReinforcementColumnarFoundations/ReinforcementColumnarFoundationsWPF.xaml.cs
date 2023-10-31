@@ -93,7 +93,7 @@ namespace RAM.ReinforcementColumnarFoundations
             {
                 switch (ReinforcementColumnarFoundationsSettingsItem.SelectedTypeButtonName)
                 {
-                    case "button_Type1": buttonType1.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent)); break;
+                    case "buttonType1": buttonType1.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent)); break;
                 }
             }
             else
@@ -252,7 +252,7 @@ namespace RAM.ReinforcementColumnarFoundations
 
 
             //Сохранение настроек
-            if (SelectedReinforcementTypeButtonName == "button_Type1")
+            if (SelectedReinforcementTypeButtonName == "buttonType1")
             {
                 ReinforcementColumnarFoundationsSettingsT1Item = new RainforcementColumnarFoundationsSettingsT1();
 
@@ -265,6 +265,8 @@ namespace RAM.ReinforcementColumnarFoundations
                 ReinforcementColumnarFoundationsSettingsT1Item.FirstStirrupBarTapeName = FirstStirrupBarTape.Name;
                 ReinforcementColumnarFoundationsSettingsT1Item.SupracolumnRebarBarCoverTypeName = SupracolumnRebarBarCoverType.Name;
                 ReinforcementColumnarFoundationsSettingsT1Item.BottomRebarCoverTypeName = BottomRebarCoverType.Name;
+
+                ReinforcementColumnarFoundationsSettingsT1Item.SaveSettings();
             }
         }
 
