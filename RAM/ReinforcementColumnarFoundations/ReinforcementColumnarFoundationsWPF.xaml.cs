@@ -181,6 +181,19 @@ namespace RAM.ReinforcementColumnarFoundations
                     }
                 }
 
+                //Заполнение сохраненных параметров сечения
+                if (RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.FirstMainBarTapeName) != null)
+                {
+                    comboBox_FirstBarTapes.SelectedItem = RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.FirstMainBarTapeName);
+                }
+                else
+                {
+                    if (comboBox_FirstBarTapes.Items.Count != 0)
+                    {
+                        comboBox_FirstBarTapes.SelectedItem = comboBox_FirstBarTapes.Items.GetItemAt(0);
+                    }
+                }
+
 
 
             }
