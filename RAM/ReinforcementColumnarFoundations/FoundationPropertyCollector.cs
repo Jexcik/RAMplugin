@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
 
@@ -17,10 +18,15 @@ namespace RAM.ReinforcementColumnarFoundations
         public double TopLevelOffset { get; }
         public double FoundationLength { get; }
         public double ColumnHeight { get; }
-
         public double ColumnWidth { get; }
         public double ColumnLength { get; }
+
+        public double Ledge1Height { get; }
+        public double Ledge1Length { get; }
+        public double Ledge1Width { get; }
+
         public XYZ FoundationBasePoint { get; }
+        public double CoverTop { get; }
 
         public FoundationPropertyCollector(Document doc, FamilyInstance foundation)
         {
@@ -39,7 +45,13 @@ namespace RAM.ReinforcementColumnarFoundations
 
 
             //Высота первого уступа
-            double ledge1Height = familySymbol.LookupParameter("Уступ 1_Высота").AsDouble();
+            Ledge1Height = familySymbol.LookupParameter("Уступ 1_Высота").AsDouble();
+            //Длина первого уступа
+            Ledge1Length = familySymbol.LookupParameter("Уступ 1_Длина").AsDouble();
+            //Ширина первого уступа
+            Ledge1Width = familySymbol.LookupParameter("Уступ 1_Ширина").AsDouble();
+
+
             //Высота второго уступа
             double ledge2Height = familySymbol.LookupParameter("Уступ 2_Высота").AsDouble();
             //Высота третьего уступа
@@ -49,15 +61,18 @@ namespace RAM.ReinforcementColumnarFoundations
             //Колличество уступов
             int numberofLedges = familySymbol.LookupParameter("Плита_Количество уступов").AsInteger();
 
+            //Защитный слой верхней грани
+            CoverTop = double.Parse(Regex.Replace(foundation.get_Parameter(BuiltInParameter.CLEAR_COVER_TOP).AsValueString().Substring(0, 2), @"[^\d]", "")) / 304.8;
+
 
             //Высота фундамента
             FoundationLength = 0;
 
             switch (numberofLedges)
             {
-                case 1: FoundationLength = ColumnHeight + ledge1Height; break;
-                case 2: FoundationLength = ColumnHeight + ledge1Height + ledge2Height; break;
-                case 3: FoundationLength = ColumnHeight + ledge1Height + ledge2Height + ledge3Height; break;
+                case 1: FoundationLength = ColumnHeight + Ledge1Height; break;
+                case 2: FoundationLength = ColumnHeight + Ledge1Height + ledge2Height; break;
+                case 3: FoundationLength = ColumnHeight + Ledge1Height + ledge2Height + ledge3Height; break;
             }
             //Нижняя точка геометрии фундамента
             FoundationBasePoint = (foundation.Location as LocationPoint).Point;

@@ -35,6 +35,7 @@ namespace RAM.ReinforcementColumnarFoundations
         public RebarBarType FirstStirrupBarTape;
         public RebarBarType SecondStirrupBarTape;
         public RebarCoverType SupracolumnRebarBarCoverType;
+        public RebarCoverType BottomRebarCoverType;
 
         public RebarShape Form01;
         public RebarShape Form26;
@@ -69,6 +70,9 @@ namespace RAM.ReinforcementColumnarFoundations
 
             comboBox_RebarCoverTypes.ItemsSource = RebarCoverTypesList;
             comboBox_RebarCoverTypes.DisplayMemberPath = "Name";
+
+            comboBox_RebarCoverBottom.ItemsSource = RebarCoverTypesList;
+            comboBox_RebarCoverBottom.DisplayMemberPath = "Name";
 
             comboBox_Form01.ItemsSource = RebarShapeList;
             comboBox_Form01.DisplayMemberPath = "Name";
@@ -105,6 +109,11 @@ namespace RAM.ReinforcementColumnarFoundations
             SetBorderForSelectedButton(sender);
             SetBorderForNonSelectedButtons(sender);
 
+            //Типы арматуры в сечении
+            comboBox_FirstBarTapes.Visibility = System.Windows.Visibility.Visible;
+            comboBox_FirstBarTapes.Margin = new Thickness(30, 34, 0, 0);
+
+
             SetSavedSettingsT1();
         }
 
@@ -112,6 +121,67 @@ namespace RAM.ReinforcementColumnarFoundations
         {
             if (ReinforcementColumnarFoundationsSettingsT1Item != null)
             {
+                //Задание сохраненных форм
+                if (RebarShapeList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.Form01Name) != null)
+                {
+                    comboBox_Form01.SelectedItem = RebarShapeList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.Form01Name);
+                }
+                else
+                {
+                    if (comboBox_Form01.Items.Count != 0)
+                    {
+                        comboBox_Form01.SelectedItem = comboBox_Form01.Items.GetItemAt(0);
+                    }
+                }
+                if (RebarShapeList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.Form26Name) != null)
+                {
+                    comboBox_Form26.SelectedItem = RebarShapeList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.Form26Name);
+                }
+                else
+                {
+                    if (comboBox_Form26.Items.Count != 0)
+                    {
+                        comboBox_Form26.SelectedItem = comboBox_Form26.Items.GetItemAt(0);
+                    }
+                }
+
+                if (RebarShapeList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.Form11Name) != null)
+                {
+                    comboBox_Form11.SelectedItem = RebarShapeList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.Form11Name);
+                }
+                else
+                {
+                    if (comboBox_Form11.Items.Count != 0)
+                    {
+                        comboBox_Form11.SelectedItem = comboBox_Form11.Items.GetItemAt(0);
+                    }
+                }
+
+                if (RebarShapeList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.Form51Name) != null)
+                {
+                    comboBox_Form51.SelectedItem = RebarShapeList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.Form51Name);
+                }
+                else
+                {
+                    if (comboBox_Form51.Items.Count != 0)
+                    {
+                        comboBox_Form51.SelectedItem = comboBox_Form51.Items.GetItemAt(0);
+                    }
+                }
+
+                if (RebarHookTypeList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.RebarHookTypeForStirrupName) != null)
+                {
+                    comboBox_RebarHookType.SelectedItem = RebarHookTypeList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.RebarHookTypeForStirrupName);
+                }
+                else
+                {
+                    if (comboBox_RebarHookType.Items.Count != 0)
+                    {
+                        comboBox_RebarHookType.SelectedItem = comboBox_RebarHookType.Items.GetItemAt(0);
+                    }
+                }
+
+
 
             }
         }
@@ -167,10 +237,17 @@ namespace RAM.ReinforcementColumnarFoundations
                 TaskDialog.Show("Revit", "Выберите тип стержня основного хомута, что бы продолжить работу!");
                 return;
             }
-            SupracolumnRebarBarCoverType=comboBox_RebarCoverTypes.SelectedItem as RebarCoverType;
-            if(SupracolumnRebarBarCoverType == null) 
+            SupracolumnRebarBarCoverType = comboBox_RebarCoverTypes.SelectedItem as RebarCoverType;
+            if (SupracolumnRebarBarCoverType == null)
             {
-                TaskDialog.Show("Revir", "Укажите защитный слой, что бы продолжить работу!");
+                TaskDialog.Show("Revit", "Укажите защитный слой, что бы продолжить работу!");
+                return;
+            }
+            BottomRebarCoverType = comboBox_RebarCoverBottom.SelectedItem as RebarCoverType;
+            if (BottomRebarCoverType == null)
+            {
+                TaskDialog.Show("Revit", "Укажите защитный слой арматуры в подошве фундамента");
+                return;
             }
 
 
@@ -184,9 +261,10 @@ namespace RAM.ReinforcementColumnarFoundations
                 ReinforcementColumnarFoundationsSettingsT1Item.Form11Name = Form11.Name;
                 ReinforcementColumnarFoundationsSettingsT1Item.Form51Name = Form51.Name;
 
-                ReinforcementColumnarFoundationsSettingsT1Item.FirstMainBarTapeName=FirstMainBarTape.Name;
-                ReinforcementColumnarFoundationsSettingsT1Item.FirstStirrupBarTapeName= FirstStirrupBarTape.Name;
-                ReinforcementColumnarFoundationsSettingsT1Item.SupracolumnRebarBarCoverTypeName=SupracolumnRebarBarCoverType.Name;
+                ReinforcementColumnarFoundationsSettingsT1Item.FirstMainBarTapeName = FirstMainBarTape.Name;
+                ReinforcementColumnarFoundationsSettingsT1Item.FirstStirrupBarTapeName = FirstStirrupBarTape.Name;
+                ReinforcementColumnarFoundationsSettingsT1Item.SupracolumnRebarBarCoverTypeName = SupracolumnRebarBarCoverType.Name;
+                ReinforcementColumnarFoundationsSettingsT1Item.BottomRebarCoverTypeName = BottomRebarCoverType.Name;
             }
         }
 
@@ -206,7 +284,7 @@ namespace RAM.ReinforcementColumnarFoundations
         private static void SetBorderForSelectedButton(object sender)
         {
             BrushConverter bc = new BrushConverter();
-            (sender as Button).BorderThickness = new Thickness(3, 3, 3, 3);
+            (sender as Button).BorderThickness = new Thickness(4, 4, 4, 4);
         }
         private void SetBorderForNonSelectedButtons(object sender)
         {

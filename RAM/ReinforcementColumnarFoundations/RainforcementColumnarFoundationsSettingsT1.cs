@@ -14,6 +14,7 @@ namespace RAM.ReinforcementColumnarFoundations
         public string FirstMainBarTapeName { get; set; }
         public string FirstStirrupBarTapeName { get; set; }
         public string SupracolumnRebarBarCoverTypeName { get; set; }
+        public string BottomRebarCoverTypeName { get; set; }
 
         public RainforcementColumnarFoundationsSettingsT1 GetSettings()
         {
