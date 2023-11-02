@@ -34,6 +34,13 @@
     <Reference Include="Aspose.Cells, Version=23.10.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
       <HintPath>..\packages\Aspose.Cells.23.10.0\lib\net40\Aspose.Cells.dll</HintPath>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.20.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.20.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RevitAPI">
@@ -137,6 +144,11 @@
   <ItemGroup>
     <Content Include="FileName\img2.png" />
     <Content Include="FileName\logoRAM.ico" />
+    <Resource Include="Resources\RebarForms\11.png" />
+    <Resource Include="Resources\RebarForms\26.png" />
+    <Resource Include="Resources\RebarForms\51.png" />
+    <Resource Include="Resources\RebarForms\RebarHookType.png" />
+    <Resource Include="Resources\RebarForms\01.png" />
     <Resource Include="Resources\Надколонник_Армирование.png" />
     <Resource Include="Resources\Arm_found.png" />
     <Resource Include="Resources\Надколонник_Армирование_Тип1.png" />

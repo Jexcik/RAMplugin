@@ -1,21 +1,11 @@
 ﻿using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.UI;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RAM.ReinforcementColumnarFoundations
 {
@@ -30,10 +20,14 @@ namespace RAM.ReinforcementColumnarFoundations
         List<RebarHookType> RebarHookTypeList;
 
         public string SelectedReinforcementTypeButtonName;
+
+        public RebarBarType IndirectBarTapes;
         public RebarBarType FirstMainBarTape;
         public RebarBarType SecondMainBarTape;
+        public RebarBarType BottomMainBarTape;
         public RebarBarType FirstStirrupBarTape;
         public RebarBarType SecondStirrupBarTape;
+
         public RebarCoverType SupracolumnRebarBarCoverType;
         public RebarCoverType BottomRebarCoverType;
 
@@ -41,6 +35,7 @@ namespace RAM.ReinforcementColumnarFoundations
         public RebarShape Form26;
         public RebarShape Form11;
         public RebarShape Form51;
+
         public RebarHookType RebarHookTypeForStirrup;
 
 
@@ -58,12 +53,17 @@ namespace RAM.ReinforcementColumnarFoundations
             ReinforcementColumnarFoundationsSettingsT1Item = new RainforcementColumnarFoundationsSettingsT1().GetSettings();
 
             InitializeComponent();
+            comboBox_IndirectBarTapes.ItemsSource = RebarBarTypesList;
+            comboBox_IndirectBarTapes.DisplayMemberPath = "Name";
 
             comboBox_FirstBarTapes.ItemsSource = RebarBarTypesList;
             comboBox_FirstBarTapes.DisplayMemberPath = "Name";
 
-            comboBox_SecondStirrupBarTapes.ItemsSource = RebarBarTypesList;
-            comboBox_SecondStirrupBarTapes.DisplayMemberPath = "Name";
+            comboBox_SecondBarTapes.ItemsSource = RebarBarTypesList;
+            comboBox_SecondBarTapes.DisplayMemberPath = "Name";
+
+            comboBox_BottomBarTapes.ItemsSource = RebarBarTypesList;
+            comboBox_BottomBarTapes.DisplayMemberPath = "Name";
 
             comboBox_FirstStirrupBarTapes.ItemsSource = RebarBarTypesList;
             comboBox_FirstStirrupBarTapes.DisplayMemberPath = "Name";
@@ -108,10 +108,6 @@ namespace RAM.ReinforcementColumnarFoundations
             SelectedReinforcementTypeButtonName = (sender as Button).Name;
             SetBorderForSelectedButton(sender);
             SetBorderForNonSelectedButtons(sender);
-
-            //Типы арматуры в сечении
-            comboBox_FirstBarTapes.Visibility = System.Windows.Visibility.Visible;
-            comboBox_FirstBarTapes.Margin = new Thickness(30, 34, 0, 0);
 
 
             SetSavedSettingsT1();
@@ -182,6 +178,18 @@ namespace RAM.ReinforcementColumnarFoundations
                 }
 
                 //Заполнение сохраненных параметров сечения
+                if (RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.IndirectBarTapeName) != null)
+                {
+                    comboBox_IndirectBarTapes.SelectedItem = RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.IndirectBarTapeName);
+                }
+                else
+                {
+                    if (comboBox_IndirectBarTapes.Items.Count != 0)
+                    {
+                        comboBox_IndirectBarTapes.SelectedItem = comboBox_IndirectBarTapes.Items.GetItemAt(0);
+                    }
+                }
+
                 if (RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.FirstMainBarTapeName) != null)
                 {
                     comboBox_FirstBarTapes.SelectedItem = RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.FirstMainBarTapeName);
@@ -194,8 +202,65 @@ namespace RAM.ReinforcementColumnarFoundations
                     }
                 }
 
+                if (RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.SecondBarTapesName) != null)
+                {
+                    comboBox_SecondBarTapes.SelectedItem = RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.SecondBarTapesName);
+                }
+                else
+                {
+                    if (comboBox_SecondBarTapes.Items.Count != 0)
+                    {
+                        comboBox_SecondBarTapes.SelectedItem = comboBox_SecondBarTapes.Items.GetItemAt(0);
+                    }
+                }
 
+                if (RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.BottomMainBarTapeName) != null)
+                {
+                    comboBox_BottomBarTapes.SelectedItem = RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.BottomMainBarTapeName);
+                }
+                else
+                {
+                    if (comboBox_BottomBarTapes.Items.Count != 0)
+                    {
+                        comboBox_BottomBarTapes.SelectedItem = comboBox_BottomBarTapes.Items.GetItemAt(0);
+                    }
+                }
 
+                if (RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.FirstStirrupBarTapeName) != null)
+                {
+                    comboBox_FirstStirrupBarTapes.SelectedItem = RebarBarTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.FirstStirrupBarTapeName);
+                }
+                else
+                {
+                    if (comboBox_FirstStirrupBarTapes.Items.Count != 0)
+                    {
+                        comboBox_FirstStirrupBarTapes.SelectedItem = comboBox_FirstStirrupBarTapes.Items.GetItemAt(0);
+                    }
+                }
+
+                if (RebarCoverTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.SupracolumnRebarBarCoverTypeName) != null)
+                {
+                    comboBox_RebarCoverTypes.SelectedItem = RebarCoverTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.SupracolumnRebarBarCoverTypeName);
+                }
+                else
+                {
+                    if (comboBox_RebarCoverTypes.Items.Count != 0)
+                    {
+                        comboBox_RebarCoverTypes.SelectedItem = comboBox_RebarCoverTypes.Items.GetItemAt(0);
+                    }
+                }
+
+                if (RebarCoverTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.BottomRebarCoverTypeName) != null)
+                {
+                    comboBox_RebarCoverBottom.SelectedItem = RebarCoverTypesList.FirstOrDefault(rbt => rbt.Name == ReinforcementColumnarFoundationsSettingsT1Item.BottomRebarCoverTypeName);
+                }
+                else
+                {
+                    if (comboBox_RebarCoverTypes.Items.Count != 0)
+                    {
+                        comboBox_RebarCoverBottom.SelectedItem = comboBox_RebarCoverBottom.Items.GetItemAt(0);
+                    }
+                }
             }
         }
 
@@ -238,16 +303,29 @@ namespace RAM.ReinforcementColumnarFoundations
             }
 
             //Проверка заполнения полей в сечении для всех типов
+            IndirectBarTapes = comboBox_IndirectBarTapes.SelectedItem as RebarBarType;
+            if (IndirectBarTapes == null)
+            {
+                TaskDialog.Show("Revit", "Выберите тип стержней косвенного армирования!");
+                return;
+            }
+
             FirstMainBarTape = comboBox_FirstBarTapes.SelectedItem as RebarBarType;
             if (FirstMainBarTape == null)
             {
-                TaskDialog.Show("Revit", "Выберите тип основных стержней подколонника !");
+                TaskDialog.Show("Revit", "Выберите тип основных стержней подколонника!");
                 return;
             }
             FirstStirrupBarTape = comboBox_FirstStirrupBarTapes.SelectedItem as RebarBarType;
             if (FirstStirrupBarTape == null)
             {
                 TaskDialog.Show("Revit", "Выберите тип стержня основного хомута, что бы продолжить работу!");
+                return;
+            }
+            BottomMainBarTape = comboBox_BottomBarTapes.SelectedItem as RebarBarType;
+            if (BottomMainBarTape == null)
+            {
+                TaskDialog.Show("Revit", "Выберите тип основных стержней подошвы фундамента!");
                 return;
             }
             SupracolumnRebarBarCoverType = comboBox_RebarCoverTypes.SelectedItem as RebarCoverType;
@@ -274,12 +352,16 @@ namespace RAM.ReinforcementColumnarFoundations
                 ReinforcementColumnarFoundationsSettingsT1Item.Form11Name = Form11.Name;
                 ReinforcementColumnarFoundationsSettingsT1Item.Form51Name = Form51.Name;
 
+                ReinforcementColumnarFoundationsSettingsT1Item.IndirectBarTapeName = IndirectBarTapes.Name;
                 ReinforcementColumnarFoundationsSettingsT1Item.FirstMainBarTapeName = FirstMainBarTape.Name;
                 ReinforcementColumnarFoundationsSettingsT1Item.FirstStirrupBarTapeName = FirstStirrupBarTape.Name;
+                ReinforcementColumnarFoundationsSettingsT1Item.BottomMainBarTapeName = BottomMainBarTape.Name;
+
                 ReinforcementColumnarFoundationsSettingsT1Item.SupracolumnRebarBarCoverTypeName = SupracolumnRebarBarCoverType.Name;
                 ReinforcementColumnarFoundationsSettingsT1Item.BottomRebarCoverTypeName = BottomRebarCoverType.Name;
 
                 ReinforcementColumnarFoundationsSettingsT1Item.SaveSettings();
+                ReinforcementColumnarFoundationsSettingsT1Item.OpenWord();
             }
         }
 
