@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RAM.ReinforcementColumnarFoundations
 {
@@ -67,10 +68,9 @@ namespace RAM.ReinforcementColumnarFoundations
             }
 
 
-
             ReinforcementColumnarFoundationsWPF rcfWPF = new ReinforcementColumnarFoundationsWPF(rebarBarTypesList, rebarShapeList, rebarCoverTypesList, rebarHookTypeList);
 
-            rcfWPF.ShowDialog();
+            rcfWPF.Show();
             if (rcfWPF.DialogResult != true)
             {
                 return Result.Cancelled;

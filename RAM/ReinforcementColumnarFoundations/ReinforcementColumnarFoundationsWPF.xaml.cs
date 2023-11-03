@@ -361,7 +361,6 @@ namespace RAM.ReinforcementColumnarFoundations
                 ReinforcementColumnarFoundationsSettingsT1Item.BottomRebarCoverTypeName = BottomRebarCoverType.Name;
 
                 ReinforcementColumnarFoundationsSettingsT1Item.SaveSettings();
-                ReinforcementColumnarFoundationsSettingsT1Item.OpenWord();
             }
         }
 

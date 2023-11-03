@@ -82,19 +82,19 @@ namespace RAM.ReinforcementColumnarFoundations
         //    }
         //}
 
-        public void OpenWord()
-        {
-            //Создание экземпляра приложения Word
-            Word.Application wordApp = new Word.Application();
-            //Создание нового документа
-            Word.Document doc = wordApp.Documents.Add();
-            //Добавление текста в документ
-            Word.Paragraph paragraph = doc.Paragraphs.Add();
-            paragraph.Range.Text = "Пример текста для документа Word";
+        //public void OpenWord()
+        //{
+        //    //Создание экземпляра приложения Word
+        //    Word.Application wordApp = new Word.Application();
+        //    //Создание нового документа
+        //    Word.Document doc = wordApp.Documents.Add();
+        //    //Добавление текста в документ
+        //    Word.Paragraph paragraph = doc.Paragraphs.Add();
+        //    paragraph.Range.Text = "Пример текста для документа Word";
 
-            //Отображение документа
-            wordApp.Visible = true;
-        }
+        //    //Отображение документа
+        //    wordApp.Visible = true;
+        //}
 
 
     }
