@@ -70,7 +70,7 @@ namespace RAM.ReinforcementColumnarFoundations
 
             ReinforcementColumnarFoundationsWPF rcfWPF = new ReinforcementColumnarFoundationsWPF(rebarBarTypesList, rebarShapeList, rebarCoverTypesList, rebarHookTypeList);
 
-            rcfWPF.Show();
+            rcfWPF.ShowDialog();
             if (rcfWPF.DialogResult != true)
             {
                 return Result.Cancelled;
