@@ -41,10 +41,7 @@
                         <ComboBox x:Name="comboBox_RebarCoverTypes" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="60" Height="25" Grid.Column="0" Grid.Row="1" Margin="90,0,0,335"></ComboBox>
                         <ComboBox x:Name="comboBox_RebarCoverBottom" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="60" Height="25" Grid.Column="0" Grid.Row="1" Margin="55,0,0,58"></ComboBox>
 
-
                         <Image x:Name="image_Sections" VerticalAlignment="Top" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="Fant" Grid.Row="1" Source="/RAM;component/Resources/Надколонник_Армирование.png" Margin="110,10,105,0"/>
-
-
 
                     </Grid>
                 </Grid>
