@@ -20,6 +20,7 @@ namespace RAM.ReinforcementColumnarFoundations
         List<RebarHookType> RebarHookTypeList;
 
         public string SelectedReinforcementTypeButtonName;
+        public double StepIndirectRebar;
 
         public RebarBarType IndirectBarTapes;
         public RebarBarType FirstMainBarTape;
@@ -359,6 +360,14 @@ namespace RAM.ReinforcementColumnarFoundations
 
                 ReinforcementColumnarFoundationsSettingsT1Item.SupracolumnRebarBarCoverTypeName = SupracolumnRebarBarCoverType.Name;
                 ReinforcementColumnarFoundationsSettingsT1Item.BottomRebarCoverTypeName = BottomRebarCoverType.Name;
+
+                double.TryParse(textBox_StepIndirectRebar.Text, out StepIndirectRebar);
+                if (string.IsNullOrEmpty(textBox_StepIndirectRebar.Text))
+                {
+                    TaskDialog.Show("Revit", "Укажите шаг раскладки рядов косвенного армирования!");
+                    return;
+                }
+                ReinforcementColumnarFoundationsSettingsT1Item.StepIndirectRebar = StepIndirectRebar;
 
                 ReinforcementColumnarFoundationsSettingsT1Item.SaveSettings();
             }

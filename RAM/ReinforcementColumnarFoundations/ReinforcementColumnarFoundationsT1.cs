@@ -43,6 +43,8 @@ namespace RAM.ReinforcementColumnarFoundations
             RebarCoverType rebarCoverType = reinforcementColumnarFoundationsWPF.BottomRebarCoverType;
             double bottomCoverDistance = rebarCoverType.CoverDistance;
 
+            double StepIndirectRebar = reinforcementColumnarFoundationsWPF.StepIndirectRebar/304.8;
+
             using (Transaction t = new Transaction(doc))
             {
                 t.Start("Армирование фундаментов - Тип 1");
@@ -229,7 +231,7 @@ namespace RAM.ReinforcementColumnarFoundations
                         MainRebar_1.get_Parameter(BuiltInParameter.REBAR_ELEM_BAR_SPACING).Set(100 / 304.8);
                         //MainRebar_1.get_Parameter(BuiltInParameter.REBAR_ELEM_QUANTITY_OF_BARS).Set(6);
 
-                        var elementRotate = ElementTransformUtils.CopyElement(doc, MainRebar_1.Id, new XYZ(0, 0, 0));
+                        var elementRotate = ElementTransformUtils.CopyElement(doc, MainRebar_1.Id, new XYZ(0, 0, -inderectMainBarDiam));
                         ElementTransformUtils.RotateElements(doc, elementRotate, rotateLineBase, 90 * (Math.PI / 180));
                         elementRotate.Add(MainRebar_1.Id);
 
@@ -239,8 +241,8 @@ namespace RAM.ReinforcementColumnarFoundations
 
                         for (int i = 0; i < 2; i++)
                         {
-                            ElementTransformUtils.CopyElement(doc, newRebarGroup.Id, new XYZ(0, 0, -stepGroup / 304.8));
-                            stepGroup += 50;
+                            ElementTransformUtils.CopyElement(doc, newRebarGroup.Id, new XYZ(0, 0, -StepIndirectRebar));
+                            StepIndirectRebar += StepIndirectRebar;
                         }
                     }
                     catch

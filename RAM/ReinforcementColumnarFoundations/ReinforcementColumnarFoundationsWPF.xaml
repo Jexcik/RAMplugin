@@ -37,9 +37,11 @@
                         <ComboBox x:Name="comboBox_BottomBarTapes" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="100" Height="25" Grid.Column="0" Grid.Row="1" Margin="10,0,0,130"></ComboBox>
                         <ComboBox x:Name="comboBox_IndirectBarTapes" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="25" Grid.Column="0" Grid.Row="1" Margin="30,262,0,0"></ComboBox>
                         <ComboBox x:Name="comboBox_FirstStirrupBarTapes" Width="100" Height="25" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,25,10,0"></ComboBox>
-                        
+
                         <ComboBox x:Name="comboBox_RebarCoverTypes" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="60" Height="25" Grid.Column="0" Grid.Row="1" Margin="90,0,0,335"></ComboBox>
                         <ComboBox x:Name="comboBox_RebarCoverBottom" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="60" Height="25" Grid.Column="0" Grid.Row="1" Margin="55,0,0,58"></ComboBox>
+
+                        <TextBox x:Name="textBox_StepIndirectRebar" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1" Width="40" Height="25" Margin="100,205,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></TextBox>
 
                         <Image x:Name="image_Sections" VerticalAlignment="Top" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="Fant" Grid.Row="1" Source="/RAM;component/Resources/Надколонник_Армирование.png" Margin="110,10,105,0"/>
 
@@ -49,13 +51,14 @@
             <TabItem Header="Формы и соединения">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="42.5"/>
+                        <ColumnDefinition Width="24.5"/>
+                        <ColumnDefinition Width="18"/>
                         <ColumnDefinition Width="207.5"/>
                         <ColumnDefinition Width="200*"/>
                     </Grid.ColumnDefinitions>
-                    <GridSplitter Width="1" HorizontalAlignment="Left" Background="#FFACACAC" Grid.Column="1" Margin="206,0,0,0"/>
+                    <GridSplitter Width="2" HorizontalAlignment="Left" Background="#FFACACAC" Grid.Column="2" Margin="206,0,0,0"/>
                     <GridSplitter Width="1" HorizontalAlignment="Left" Background="#FFACACAC"/>
-                    <Grid Grid.ColumnSpan="2">
+                    <Grid Grid.ColumnSpan="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="120*"/>
                             <RowDefinition Height="120*"/>
