@@ -43,7 +43,7 @@ namespace RAM.ReinforcementColumnarFoundations
             RebarCoverType rebarCoverType = reinforcementColumnarFoundationsWPF.BottomRebarCoverType;
             double bottomCoverDistance = rebarCoverType.CoverDistance;
 
-            double StepIndirectRebar = reinforcementColumnarFoundationsWPF.StepIndirectRebar/304.8;
+            double StepIndirectRebar = reinforcementColumnarFoundationsWPF.StepIndirectRebar / 304.8;
 
             using (Transaction t = new Transaction(doc))
             {
@@ -236,8 +236,6 @@ namespace RAM.ReinforcementColumnarFoundations
                         elementRotate.Add(MainRebar_1.Id);
 
                         Group newRebarGroup = doc.Create.NewGroup(elementRotate);
-
-                        int stepGroup = 50;
 
                         for (int i = 0; i < 2; i++)
                         {
